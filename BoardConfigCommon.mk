@@ -97,12 +97,6 @@ TARGET_TS_MAKEUP := true
 # Charger
 BOARD_CHARGER_ENABLE_SUSPEND := true
 
-# CMHW
-BOARD_USES_CYANOGEN_HARDWARE := true
-BOARD_HARDWARE_CLASS += \
-    hardware/cyanogen/cmhw \
-    $(VENDOR_PATH)/cmhw
-
 # CNE
 BOARD_USES_QCNE := true
 
@@ -164,9 +158,6 @@ TARGET_USES_MEDIA_EXTENSIONS := true
 # Peripheral manager
 TARGET_PER_MGR_ENABLED := true
 
-# Power
-TARGET_POWERHAL_VARIANT := qcom
-
 # Properties
 TARGET_SYSTEM_PROP += $(VENDOR_PATH)/system.prop
 
@@ -181,7 +172,7 @@ TARGET_USERIMAGES_USE_F2FS := true
 
 # RIL
 PROTOBUF_SUPPORTED := true
-TARGET_RIL_VARIANT := caf
+#TARGET_RIL_VARIANT := caf
 
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
