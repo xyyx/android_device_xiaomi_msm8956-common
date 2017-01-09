@@ -128,6 +128,9 @@ function get-set-forall() {
     write /sys/devices/system/cpu/cpu4/core_ctl/task_thres 4
     write /sys/devices/system/cpu/cpu4/core_ctl/is_big_cluster 1
 
+    # msm_perfomance
+    write /sys/module/msm_performance/parameters/touchboost 0
+
     # Re-enable thermal
     write /sys/module/msm_thermal/core_control/enabled 1
 
