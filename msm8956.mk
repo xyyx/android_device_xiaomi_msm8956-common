@@ -117,10 +117,6 @@ PRODUCT_PACKAGES += \
     memtrack.msm8952 \
     liboverlay
 
-# Doze mode
-PRODUCT_PACKAGES += \
-    XiaomiDoze
-
 # Face detection extension
 PRODUCT_PACKAGES += \
     org.codeaurora.camera
