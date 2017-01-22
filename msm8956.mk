@@ -256,3 +256,7 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.sf.lcd_density=401
+
+# miracast props
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.debug.wfd.enable=1
