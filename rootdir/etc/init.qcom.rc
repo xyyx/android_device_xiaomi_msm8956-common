@@ -405,8 +405,9 @@ on property:persist.env.fastdorm.enabled=true
     setprop persist.radio.data_no_toggle 1
 
 service cnd /system/bin/cnd
-    class main
+    class late_start
     socket cnd stream 660 root inet
+    group root wakelock
     writepid /dev/cpuset/system-background/task
 
 service dpmd /system/bin/dpmd
@@ -580,8 +581,6 @@ service cnss_diag /system/bin/cnss_diag --q -f -d
 
 service cnss-daemon /system/bin/cnss-daemon -n -l
     class late_start
-    user system
-    group system inet net_admin wifi
 
 on property:ro.data.large_tcp_window_size=true
     # Adjust socket buffer to enlarge TCP receive window for high bandwidth (e.g. DO-RevB)
