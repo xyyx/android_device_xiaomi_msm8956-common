@@ -41,7 +41,6 @@ function get-set-forall() {
     write /sys/class/devfreq/cpubw/governor "bw_hwmon"
     write /sys/class/devfreq/cpubw/bw_hwmon/io_percent 20
     write /sys/class/devfreq/cpubw/bw_hwmon/guard_band_mbps 30
-    write /sys/class/devfreq/gpubw/bw_hwmon/io_percent 40
 
     # Disable thermal
     write /sys/module/msm_thermal/core_control/enabled 0
@@ -114,14 +113,6 @@ function get-set-forall() {
     write /sys/module/lpm_levels/system/a53/a53-l2-gdhs/idle_enabled "N"
     write /sys/module/lpm_levels/system/a72/a72-l2-gdhs/idle_enabled "N"
 
-    # Enable sched guided freq control
-    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/use_sched_load 1
-    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/use_migration_notif 1
-    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/use_sched_load 1
-    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/use_migration_notif 1
-    write /proc/sys/kernel/sched_freq_inc_notify 50000
-    write /proc/sys/kernel/sched_freq_dec_notify 50000
-
     # Configure core_ctl
     write /sys/devices/system/cpu/cpu0/core_ctl/min_cpus 4
     write /sys/devices/system/cpu/cpu0/core_ctl/max_cpus 4
@@ -184,7 +175,7 @@ function get-set-forall() {
     # 64 bit will have 81K 
     chmod 0660 /sys/module/lowmemorykiller/parameters/minfree
     echo 1 > /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk
-    if [ $MemTotal -gt 2097152 ]; then
+    if [ $MemTotal -gt 2000000 ]; then
         echo 10 > /sys/module/process_reclaim/parameters/pressure_min
         echo 1024 > /sys/module/process_reclaim/parameters/per_swap_size
         echo "18432,23040,27648,32256,55296,80640" > /sys/module/lowmemorykiller/parameters/minfree
@@ -194,6 +185,7 @@ function get-set-forall() {
         echo 1024 > /sys/module/process_reclaim/parameters/per_swap_size
         echo "14746,18432,22118,25805,40000,55000" > /sys/module/lowmemorykiller/parameters/minfree
         echo 81250 > /sys/module/lowmemorykiller/parameters/vmpressure_file_min 
+    fi
 
-    # Vibrator intensity (max - 3596, min - 116)
-    write /sys/class/timed_output/vibrator/vtg_level 1800
+    # Vibrator intensity (in %)
+    write /sys/android_touch/vib_strength 50
