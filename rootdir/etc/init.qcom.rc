@@ -540,7 +540,7 @@ service hostapd /system/bin/hostapd -dd /data/hostapd/hostapd.conf
     oneshot
     disabled
 
-service cnss_diag /system/bin/cnss_diag --q -f -d
+service cnss_diag /system/bin/cnss_diag --q
     class late_start
     user system
     group system wifi inet net_admin sdcard_rw media_rw diag
@@ -548,13 +548,13 @@ service cnss_diag /system/bin/cnss_diag --q -f -d
 
 service cnss-daemon /system/bin/cnss-daemon -n -l
     class late_start
+    oneshot
 
 on property:ro.data.large_tcp_window_size=true
     # Adjust socket buffer to enlarge TCP receive window for high bandwidth (e.g. DO-RevB)
     write /proc/sys/net/ipv4/tcp_adv_win_scale  2
 
-
-service_redefine ril-daemon /system/bin/rild
+service ril-daemon /system/bin/rild
     class main
     socket rild stream 660 root radio
     socket sap_uim_socket1 stream 660 bluetooth bluetooth
