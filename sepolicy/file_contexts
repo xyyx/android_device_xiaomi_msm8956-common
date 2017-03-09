@@ -6,3 +6,5 @@
 
 # IR Blaster
 /dev/lirc[0-9]*                                                       u:object_r:lirc_device:s0
+
+/system/bin/init\.bullhead\.power\.sh           u:object_r:init-power-sh_exec:s0

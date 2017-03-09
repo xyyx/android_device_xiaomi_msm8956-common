@@ -1,0 +1,6 @@
+allow toolbox sysfs: { dir file } relabelfrom;
+allow toolbox sysfs_devices_system_cpu: { dir file } relabelto;
+allow toolbox sysfs_rqstats:dir { read open search };
+allow toolbox sysfs_lowmemorykiller:file { getattr setattr };
+
+
