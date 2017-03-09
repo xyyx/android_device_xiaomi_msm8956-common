@@ -189,3 +189,6 @@ function get-set-forall() {
 
     # Vibrator intensity (in %)
     write /sys/android_touch/vib_strength 50
+
+    # Set scheduler
+    write /sys/block/mmcblk0/queue/scheduler fiops
